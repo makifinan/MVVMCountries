@@ -20,7 +20,7 @@ class FeedViewModel : ViewModel() {
     val countryError = MutableLiveData<Boolean>()
 
     fun refershData(){
-
+        getDataFromAPI()
     }
 
     private fun getDataFromAPI(){
@@ -31,9 +31,12 @@ class FeedViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object:DisposableSingleObserver<List<Country>>(){
                     override fun onSuccess(value: List<Country>?) {
-                        countries.value = value
-                        countryError.value=false
-                        countryLoading.value=false
+                        value?.let {
+                            countries.value = it
+                            countryError.value=false
+                            countryLoading.value=false
+                        }
+
                     }
 
                     override fun onError(e: Throwable?) {
