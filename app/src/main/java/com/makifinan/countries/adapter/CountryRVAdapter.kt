@@ -5,9 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.makifinan.countries.R
 import com.makifinan.countries.model.Country
+import com.makifinan.countries.util.extensions.downloadFromUrl
+import com.makifinan.countries.util.extensions.placeholderProgressBar
+import com.makifinan.countries.view.FeedFragmentDirections
 
 class CountryRVAdapter(val countryList : ArrayList<Country>):RecyclerView.Adapter<CountryRVAdapter.CountryViewHolder> (){
 
@@ -37,7 +42,12 @@ class CountryRVAdapter(val countryList : ArrayList<Country>):RecyclerView.Adapte
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.rvCountryNameTextView.text= countryList[position].countryName
         holder.rvRegionTextView.text= countryList[position].countryRegion
-
+        holder.itemView.setOnClickListener {
+            val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+        holder.rvimageView.downloadFromUrl(countryList[position].imageUrl, placeholderProgressBar(holder.itemView.context))
+        
     }
 
     fun updateRecyclerView(newList : List<Country>){

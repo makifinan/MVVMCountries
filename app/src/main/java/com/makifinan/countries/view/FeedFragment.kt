@@ -19,7 +19,7 @@ import com.makifinan.countries.viewmodel.FeedViewModel
 
 class FeedFragment : Fragment(R.layout.fragment_feed) {
     private  val countryAdapter = CountryRVAdapter(arrayListOf())
-    private lateinit var viewmodel : FeedViewModel
+    private  var viewmodel = FeedViewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

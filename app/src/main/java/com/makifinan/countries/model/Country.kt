@@ -18,6 +18,7 @@ class Country(
     @SerializedName("currency")
     val countryCurrency : String?,
 
-    val imageUrl:String
+    @SerializedName("flag")
+    val imageUrl:String?
 ) {
 }
