@@ -5,5 +5,6 @@
 ##### Retrofit
 ##### RxJava
 ##### LiveData
+##### Glide
 ##### Room
 ##### Dagger - Hilt
